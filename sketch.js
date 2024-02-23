@@ -10,7 +10,7 @@ let ballSpeed = 5; // Initial speed of the ball
 function setup() {
   // Create canvas with dimensions 800x600
   createCanvas(800, 600);
-  
+
   // Initialize instances of Ball, Player Paddle, and Computer Paddle
   ball = new Ball();
   player = new Paddle(true); // Player paddle on the left side
@@ -20,23 +20,23 @@ function setup() {
 function draw() {
   // Set background color to black
   background(28, 37, 65);
-  
+
   // Draw edges of the game area
   drawEdges();
-  
+
   // Draw the ball, player paddle, and computer paddle
   drawBall();
   drawPaddle(player);
   drawPaddle(computer);
-  
+
   // Update ball and paddles
   ball.update();
   player.update();
   computer.autoPlay(); // Computer AI controls the computer paddle
-  
+
   // Handle collisions with paddles and scoring
   handleCollisionsAndScoring();
-  
+
   // Draw scores on the screen
   drawScores();
 }
@@ -161,13 +161,13 @@ function handleCollisionsAndScoring() {
     ball.setSpeed(ballSpeed, radians(swing)); // Set new speed and direction for the ball
     ballSpeed += 0.5; // Increase ball speed
   }
-  
+
   if (ball.hits(computer)) { // Check if ball hits computer paddle
     let swing = (ball.y - computer.y) / 3; // Calculate angle of deflection
     ball.setSpeed(-ballSpeed, radians(swing)); // Set new speed and direction for the ball
     ballSpeed += 0.5; // Increase ball speed
   }
-  
+
   if (ball.offScreen()) { // Check if ball goes off-screen
     if (ball.x < 0) {
       computerScore++; // Increment computer score if ball goes off the left side
